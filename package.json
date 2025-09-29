@@ -5,10 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "npm run build:client && node server.js",
+    "postinstall": "cd client && npm install",
     "dev": "nodemon server.js",
     "client": "cd client && npm run dev",
     "dev:all": "npm-run-all --parallel dev client",
-    "build:client": "cd client && npm run build",
+    "build:client": "cd client && npm install && npm run build",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
