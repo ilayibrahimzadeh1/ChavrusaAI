@@ -934,6 +934,20 @@ const chatStore = (set, get) => ({
         currentSessionId: currentSessionId
       });
 
+      // Load messages for each session that doesn't have messages yet
+      console.log('📥 Loading messages for sessions...');
+      for (const session of userSessions) {
+        const hasMessages = sessionsById[session.id]?.messages?.length > 0;
+        if (!hasMessages && session.messageCount > 0) {
+          console.log(`📥 Loading messages for session ${session.id}`);
+          try {
+            await get().loadSessionHistory(session.id);
+          } catch (error) {
+            console.error(`Failed to load messages for session ${session.id}:`, error);
+          }
+        }
+      }
+
       return true;
     } catch (error) {
       console.error('❌ loadUserSessions failed:', error.response?.status, error.response?.data || error.message);
