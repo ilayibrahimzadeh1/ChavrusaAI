@@ -293,7 +293,8 @@ const getConversationHistory = catchAsync(async (req, res) => {
   const { sessionId } = req.params;
   const { limit = 20 } = req.query;
 
-  const session = sessionService.getSession(sessionId);
+  const userId = req.user?.id || null;
+  const session = await sessionService.getSession(sessionId, userId);
   if (!session) {
     throw new NotFoundError('Session');
   }
