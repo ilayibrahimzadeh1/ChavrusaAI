@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__ide__getDiagnostics",
+      "Bash(npm create:*)",
+      "Bash(npm install:*)",
+      "Bash(npx tailwindcss init:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(npm uninstall:*)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "WebSearch",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Read(//var/folders/f7/fdgnh4451kzfrdw60dnl92tc0000gn/T/TemporaryItems/NSIRD_screencaptureui_VuUyMx/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

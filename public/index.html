@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Rabbi | Torah Learning Assistant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/auth-modal.css">
+</head>
+<body>
+    <!-- Sidebar / Rabbi selection -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <i class="fas fa-torah"></i>
+            </div>
+            <h1 class="app-name">AI Rabbi</h1>
+        </div>
+        <button class="new-chat-btn">
+            <i class="fas fa-plus"></i> New Conversation
+        </button>
+        <div class="conversation-history">
+            <div class="history-item active-conversation">
+                <i class="fas fa-comment"></i>
+                <span>Current Conversation</span>
+            </div>
+            <!-- More history items would appear here -->
+        </div>
+        <div class="rabbi-select">
+            <h3>SELECT A RABBI</h3>
+            <div class="rabbi-option" data-rabbi="Rashi">
+                <img src="images/rashi-ai.png" alt="Rashi">
+                <div>
+                    <div>Rashi</div>
+                    <small>11th century France</small>
+                </div>
+            </div>
+            <div class="rabbi-option" data-rabbi="Rambam">
+                <img src="images/ramban.png" alt="Rambam">
+                <div>
+                    <div>Rambam</div>
+                    <small>12th century Spain/Egypt</small>
+                </div>
+            </div>
+            <div class="rabbi-option" data-rabbi="Rabbi Yosef Caro">
+                <img src="images/rabbi-yosef-caro.png" alt="Rabbi Yosef Caro">
+                <div>
+                    <div>Rabbi Yosef Caro</div>
+                    <small>16th century Israel</small>
+                </div>
+            </div>
+            <div class="rabbi-option" data-rabbi="Baal Shem Tov">
+                <img src="images/baal-shem-tov.png" alt="The Baal Shem Tov">
+                <div>
+                    <div>The Baal Shem Tov</div>
+                    <small>18th century Poland</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main content area -->
+    <div class="main-content">
+        <div class="chat-header">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="current-rabbi">
+                <img id="current-rabbi-img" src="images/default-rabbi.png" alt="Current Rabbi">
+                <div class="rabbi-info">
+                    <h2 id="current-rabbi-name">Choose a Rabbi</h2>
+                    <p id="current-rabbi-era">Select from the sidebar</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <!-- Authentication UI -->
+                <div class="auth-controls">
+                    <span id="user-info" style="display: none; margin-right: 12px; color: var(--text-color); font-size: 0.875rem;"></span>
+                    <button id="login-btn" class="auth-btn" title="Sign In">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span class="btn-text">Sign In</span>
+                    </button>
+                    <button id="profile-btn" class="auth-btn" style="display: none;" title="Profile">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    <button id="logout-btn" class="auth-btn" style="display: none;" title="Sign Out">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+
+                <!-- Other actions -->
+                <button id="toggle-references">
+                    <i class="fas fa-book"></i>
+                </button>
+                <button>
+                    <i class="fas fa-ellipsis-v"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Chat messages container -->
+        <div class="chat-container" id="chat-container">
+            <!-- Welcome screen shows initially -->
+            <div class="welcome-screen" id="welcome-screen">
+                <div class="welcome-icon">
+                    <i class="fas fa-torah"></i>
+                </div>
+                <h1>Welcome to AI Rabbi</h1>
+                <p>Choose a rabbi to begin your Torah learning journey. Each rabbi brings their unique perspective and teaching style.</p>
+                
+                <div class="rabbi-cards">
+                    <div class="rabbi-card" data-rabbi="Rashi">
+                        <img src="images/rashi-ai.png" alt="Rashi">
+                        <h3>Rashi</h3>
+                        <p>Clear, concise commentator</p>
+                    </div>
+                    <div class="rabbi-card" data-rabbi="Rambam">
+                        <img src="images/ramban.png" alt="Rambam">
+                        <h3>Rambam</h3>
+                        <p>Rational philosopher</p>
+                    </div>
+                    <div class="rabbi-card" data-rabbi="Rabbi Yosef Caro">
+                        <img src="images/rabbi-yosef-caro.png" alt="Rabbi Yosef Caro">
+                        <h3>Rabbi Yosef Caro</h3>
+                        <p>Halakhic codifier</p>
+                    </div>
+                    <div class="rabbi-card" data-rabbi="Baal Shem Tov">
+                        <img src="images/baal-shem-tov.png" alt="The Baal Shem Tov">
+                        <h3>The Baal Shem Tov</h3>
+                        <p>Spiritual leader and teacher</p>
+                    </div>
+                </div>
+
+                <div class="example-questions">
+                    <h3>Try asking about:</h3>
+                    <div class="question-pill">Genesis 1:1</div>
+                    <div class="question-pill">The meaning of Shabbat</div>
+                    <div class="question-pill">Exodus 20:1-2</div>
+                    <div class="question-pill">Jewish views on charity</div>
+                    <div class="question-pill">Deuteronomy 6:4-5</div>
+                </div>
+            </div>
+
+            <!-- Typing indicator -->
+            <div class="typing-indicator" id="typing-indicator">
+                <div class="message-avatar rabbi-avatar">
+                    <i class="fas fa-star-of-david"></i>
+                </div>
+                <div class="typing-dots">
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                    <div class="typing-dot"></div>
+                </div>
+            </div>
+
+            <!-- Messages will be added here dynamically -->
+        </div>
+
+        <!-- Input area -->
+        <div class="input-area">
+            <form id="message-form">
+                <input type="text" id="message-input" placeholder="Ask your question..." autocomplete="off">
+                <div class="input-actions">
+                    <button type="button" title="Upload file">
+                        <i class="fas fa-paperclip"></i>
+                    </button>
+                    <button type="submit" class="send-btn" title="Send message">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- References panel (hidden by default) -->
+    <div class="references-panel" id="references-panel">
+        <div class="references-header">
+            <h3>Sefaria References</h3>
+            <button class="close-references">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="references-content">
+            <div class="reference-item">
+                <h4>Genesis 1:1</h4>
+                <p>In the beginning God created the heaven and the earth.</p>
+                <div class="reference-source">Source: Sefaria.org</div>
+            </div>
+            <!-- More reference items would appear here -->
+        </div>
+    </div>
+
+    <!-- Mobile overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Status message -->
+    <div id="status"></div>
+
+    <!-- JavaScript Files -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/auth-modal.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

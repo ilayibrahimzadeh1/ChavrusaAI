@@ -1,0 +1,125 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased m-0 p-0;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+  
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer components {
+  .message-bubble {
+    @apply rounded-2xl px-4 py-3 max-w-[80%] break-words;
+    animation: slideUp 0.3s ease-out;
+  }
+
+  .rabbi-card {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer border border-gray-100 hover:border-primary-300;
+  }
+
+  .sidebar-item {
+    @apply flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer;
+  }
+
+  .typing-dot {
+    @apply w-2 h-2 bg-gray-400 rounded-full;
+    animation: bounce 0.6s infinite;
+  }
+
+  /* Accessibility utility classes */
+  .accessible-button {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition-all;
+  }
+
+  .accessible-input {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all;
+  }
+
+  .accessible-link {
+    @apply focus:outline-none focus:ring-2 focus:ring-primary-500 rounded transition-all;
+  }
+
+  /* Button component classes */
+  .button-primary {
+    @apply px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors accessible-button min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+
+  .button-secondary {
+    @apply px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors accessible-button min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+
+  .button-icon {
+    @apply p-3 rounded-lg transition-colors accessible-button min-w-[44px] min-h-[44px] flex items-center justify-center;
+  }
+
+  /* Card component classes */
+  .card-standard {
+    @apply bg-white rounded-xl p-6 shadow-sm border border-gray-100;
+  }
+
+  /* Error and validation classes */
+  .input-error {
+    @apply border-red-300 focus:ring-red-500 focus:border-red-500;
+  }
+
+  .error-message {
+    @apply flex items-center gap-2 text-sm text-red-600 mt-2;
+  }
+
+  /* Screen reader utilities */
+  .sr-only {
+    @apply absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0;
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgb(203 213 225) transparent;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply bg-gray-300 rounded-full;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-400;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
