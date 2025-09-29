@@ -58,7 +58,8 @@ function App() {
       console.log('📡 Calling loadUserSessions...');
       loadUserSessions();
     }
-  }, [isAuthenticated, user, loadUserSessions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user?.id]);
 
   // Navigation handlers
   const handleStartLearning = () => {
