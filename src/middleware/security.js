@@ -37,7 +37,10 @@ const securityHeaders = helmet({
         "https://api.openai.com", // OpenAI API
         "https://www.sefaria.org", // Sefaria API
         "https://ilnsaqfdpybhgucbsthd.supabase.co", // Supabase
-        "https://chavrusa-learn.com" // Allow connection to production domain
+        "https://chavrusa-learn.com", // Allow connection to production domain
+        "wss://chavrusa-learn.com", // WebSocket connection
+        "ws://localhost:8081", // Local development WebSocket
+        "wss://localhost:8081" // Local development WebSocket (secure)
       ],
       objectSrc: ["'none'"],
       mediaSrc: ["'self'"],
