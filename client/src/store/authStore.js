@@ -2,6 +2,8 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { supabase } from '../lib/supabase'
 
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8081/api';
+
 const useAuthStore = create(
   persist(
     (set, get) => ({
@@ -295,7 +297,7 @@ const useAuthStore = create(
           const { user } = get()
           if (!user) return
 
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/profile`, {
+          const response = await fetch(`${API_BASE_URL}/auth/profile`, {
             headers: {
               'Authorization': `Bearer ${get().session?.access_token}`,
               'Content-Type': 'application/json'
@@ -316,7 +318,7 @@ const useAuthStore = create(
         try {
           set({ loading: true, error: null })
 
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/auth/profile`, {
+          const response = await fetch(`${API_BASE_URL}/auth/profile`, {
             method: 'PUT',
             headers: {
               'Authorization': `Bearer ${get().session?.access_token}`,
