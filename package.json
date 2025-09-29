@@ -1,7 +1,7 @@
 {
-  "name": "torah-learning-app",
+  "name": "chavrusa-ai",
   "version": "1.0.0",
-  "description": "An AI-powered Torah learning partner with rabbi personalities integrated with Sefaria API",
+  "description": "Modern AI-powered Torah learning platform with authentic rabbi personalities",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
