@@ -11,9 +11,10 @@ const securityHeaders = helmet({
     directives: {
       defaultSrc: ["'self'"],
       scriptSrc: [
-        "'self'", 
+        "'self'",
         "'unsafe-inline'", // Needed for inline scripts in current frontend
-        "https://cdnjs.cloudflare.com" // For Font Awesome
+        "https://cdnjs.cloudflare.com", // For Font Awesome
+        "https://static.cloudflareinsights.com" // For Cloudflare Analytics
       ],
       styleSrc: [
         "'self'", 
@@ -28,13 +29,15 @@ const securityHeaders = helmet({
       ],
       fontSrc: [
         "'self'",
+        "data:", // For inline fonts
         "https://cdnjs.cloudflare.com" // For Font Awesome fonts
       ],
       connectSrc: [
         "'self'",
         "https://api.openai.com", // OpenAI API
         "https://www.sefaria.org", // Sefaria API
-        "https://ilnsaqfdpybhgucbsthd.supabase.co" // Supabase
+        "https://ilnsaqfdpybhgucbsthd.supabase.co", // Supabase
+        "https://chavrusa-learn.com" // Allow connection to production domain
       ],
       objectSrc: ["'none'"],
       mediaSrc: ["'self'"],
