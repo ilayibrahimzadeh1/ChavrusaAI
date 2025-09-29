@@ -4,7 +4,8 @@
   "description": "Modern AI-powered Torah learning platform with authentic rabbi personalities",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build:client && node server.js",
+    "postinstall": "cd client && npm install",
     "dev": "nodemon server.js",
     "client": "cd client && npm run dev",
     "dev:all": "npm-run-all --parallel dev client",
