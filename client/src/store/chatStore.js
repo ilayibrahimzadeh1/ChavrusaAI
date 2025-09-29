@@ -127,7 +127,9 @@ const chatStore = (set, get) => ({
     // Wait for persist rehydration to complete before initializing
     if (!get().rehydrated) {
       console.log('⏳ Waiting for persist rehydration...');
-      return;
+      // TEMPORARY FIX: Force rehydration to unblock initialization
+      set({ rehydrated: true });
+      console.log('🔧 Forced rehydration to true');
     }
 
     try {
