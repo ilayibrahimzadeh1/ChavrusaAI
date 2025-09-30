@@ -312,20 +312,9 @@ function App() {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col relative">
-              {/* Header */}
-              <div className="relative z-30">
-                <Header onMenuClick={() => setSidebarOpen(true)} />
-              </div>
-
-              {/* Chat Area */}
-              <div className="relative z-0">
-                <ChatArea />
-              </div>
-
-              {/* Input Area */}
-              <div className="relative z-30">
-                <ChatInput />
-              </div>
+              <Header onMenuClick={() => setSidebarOpen(true)} />
+              <ChatArea />
+              <ChatInput />
             </div>
           </div>
         )}

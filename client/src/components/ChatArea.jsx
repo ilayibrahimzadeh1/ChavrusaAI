@@ -63,14 +63,14 @@ const ChatArea = () => {
 
   return (
     <div
-      className="flex-1 overflow-y-auto px-4 md:px-6 py-4 md:py-6 scrollbar-thin relative"
+      className="flex-1 overflow-y-auto px-6 py-6 scrollbar-thin relative z-0"
       onScroll={handleScroll}
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl mx-auto flex flex-col"
+        className="max-w-4xl mx-auto flex flex-col min-h-0"
       >
         <AnimatePresence mode="wait">
           {/* Enhanced Session Header */}

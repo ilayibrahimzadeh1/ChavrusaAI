@@ -20,8 +20,8 @@ const Header = ({ onMenuClick }) => {
   const { user } = useAuthStore();
 
   return (
-    <header className="px-4 md:px-6 py-4">
-      <div className="flex items-center backdrop-blur-[30px] bg-white/25 rounded-2xl shadow-xl px-3 md:px-6 py-3 border border-white/20">
+    <header className="px-6 py-4 relative z-30 bg-transparent shrink-0">
+      <div className="flex items-center backdrop-blur-[30px] bg-white/25 rounded-2xl shadow-xl px-6 py-3 border border-white/20">
         {/* Left Section */}
         <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
           <button

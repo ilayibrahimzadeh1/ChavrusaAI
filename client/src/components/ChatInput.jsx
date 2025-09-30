@@ -71,8 +71,8 @@ const ChatInput = () => {
   ];
 
   return (
-    <div className="px-4 md:px-6 py-3 md:py-4">
-      <div className="backdrop-blur-[30px] bg-white/40 rounded-2xl shadow-sm border border-white/30 p-3 md:p-4">
+    <div className="px-6 py-4 relative z-30 bg-transparent shrink-0">
+      <div className="backdrop-blur-[30px] bg-white/40 rounded-2xl shadow-sm border border-white/30 p-4">
         {/* Suggested Questions */}
         {!selectedRabbiId && (
           <div className="mb-4">

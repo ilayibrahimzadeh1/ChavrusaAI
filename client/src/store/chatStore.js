@@ -69,6 +69,7 @@ const chatStore = (set, get) => ({
   isLoading: false,
   isTyping: false,
   isSelectingRabbi: false,
+  isLoadingSessions: false, // Track if sessions are being loaded to prevent concurrent calls
   connectionStatus: 'connected',
   rabbis: [],
   initialized: false, // Track if app has been initialized
@@ -875,6 +876,16 @@ const chatStore = (set, get) => ({
   // Load user sessions from Supabase (extracted from initializeApp)
   loadUserSessions: async () => {
     console.log('🚀 loadUserSessions started');
+
+    // Prevent concurrent loads
+    const state = get();
+    if (state.isLoadingSessions) {
+      console.log('⏸️ Already loading sessions, skipping...');
+      return false;
+    }
+
+    set({ isLoadingSessions: true });
+
     try {
       // Get current session from Supabase directly to ensure we have valid auth
       const { data: { session } } = await supabase.auth.getSession();
@@ -882,7 +893,8 @@ const chatStore = (set, get) => ({
         // Clear sessions if no auth
         set({
           sessions: {},
-          currentSessionId: null
+          currentSessionId: null,
+          isLoadingSessions: false
         });
         return false;
       }
@@ -894,6 +906,7 @@ const chatStore = (set, get) => ({
 
       if (hasPersistedSessions && hasMessagesInSessions) {
         console.log('📦 Using persisted sessions with messages, skipping API load');
+        set({ isLoadingSessions: false });
         return true;
       }
 
@@ -947,9 +960,11 @@ const chatStore = (set, get) => ({
         }
       }
 
+      set({ isLoadingSessions: false });
       return true;
     } catch (error) {
       console.error('❌ loadUserSessions failed:', error.response?.status, error.response?.data || error.message);
+      set({ isLoadingSessions: false });
       return false;
     }
   },
