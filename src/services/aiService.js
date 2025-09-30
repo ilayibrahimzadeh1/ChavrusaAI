@@ -162,14 +162,19 @@ class AIService {
       const completion = await this.openai.responses.create({
         model: this.model,
         input: fullInput,
-        reasoning: { effort: "low" },
+        reasoning: { effort: "medium" }, // Changed from "low" to "medium" to avoid empty response bug
         text: { verbosity: "medium" }
       });
 
       const response = completion.output_text;
-      
-      if (!response) {
-        throw new Error('No response content received from OpenAI');
+
+      if (!response || response.trim().length === 0) {
+        logger.error('Empty response from OpenAI', {
+          model: this.model,
+          reasoning: completion.reasoning,
+          usage: completion.usage
+        });
+        throw new Error('No response content received from OpenAI - response was empty');
       }
 
       logger.info('AI response generated successfully', {

@@ -230,6 +230,15 @@ const chatStore = (set, get) => ({
 
       console.log('✅ App initialization complete');
 
+      // Additional safeguard: force isLoading to false after a delay if still stuck
+      setTimeout(() => {
+        const state = get();
+        if (state.isLoading && state.initialized) {
+          console.warn('⚠️ Force-resetting stuck isLoading state');
+          set({ isLoading: false });
+        }
+      }, 1000);
+
       // Show debug logs in console for troubleshooting
       console.log('📊 Debug logs from initialization:');
       try {
@@ -538,7 +547,7 @@ const chatStore = (set, get) => ({
         },
         {
           headers: authHeaders,
-          timeout: 30000, // 30 second timeout
+          timeout: 90000, // 90 second timeout for long rabbi responses (GPT-5 reasoning can take time)
           signal: abortController.signal
         }
       );
