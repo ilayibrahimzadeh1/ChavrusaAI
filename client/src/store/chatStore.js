@@ -783,7 +783,6 @@ const chatStore = (set, get) => ({
           ...state.sessions,
           [sessionId]: loadedSession
         },
-        currentSessionId: sessionId,
         isLoading: false
       }));
 

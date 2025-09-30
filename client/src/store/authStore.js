@@ -51,10 +51,13 @@ const useAuthStore = create(
                 try {
                   await get().setSession(session)
 
-                  // Load chat sessions after auth is fully updated
-                  const { default: useChatStore } = await import('./chatStore')
-                  const chatStore = useChatStore.getState()
-                  await chatStore.loadUserSessions()
+                  // Only load chat sessions on explicit sign-in, not on token refresh or initial session
+                  // App.jsx useEffect handles those to prevent duplicate calls
+                  if (event === 'SIGNED_IN') {
+                    const { default: useChatStore } = await import('./chatStore')
+                    const chatStore = useChatStore.getState()
+                    await chatStore.loadUserSessions()
+                  }
                 } catch (error) {
                   console.error('Error updating session:', error)
                 }

@@ -20,13 +20,13 @@ const Header = ({ onMenuClick }) => {
   const { user } = useAuthStore();
 
   return (
-    <header className="px-6 py-4">
-      <div className="flex items-center backdrop-blur-[30px] bg-white/25 rounded-2xl shadow-xl px-6 py-3 border border-white/20">
+    <header className="px-4 md:px-6 py-4">
+      <div className="flex items-center backdrop-blur-[30px] bg-white/25 rounded-2xl shadow-xl px-3 md:px-6 py-3 border border-white/20">
         {/* Left Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3 flex-1 min-w-0">
           <button
             onClick={onMenuClick}
-            className="lg:hidden p-2 rounded-lg text-[#31110F]/80 hover:text-[#31110F] hover:bg-white/20 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-[#31110F]/80 hover:text-[#31110F] hover:bg-white/20 transition-colors shrink-0"
             aria-label="Open navigation menu"
             type="button"
           >
@@ -34,7 +34,7 @@ const Header = ({ onMenuClick }) => {
           </button>
 
           {/* Interactive Rabbi Selector */}
-          <div className="flex-1 max-w-xs">
+          <div className="flex-1 min-w-0 max-w-[200px] md:max-w-xs">
             <RabbiDropdown
               selectedRabbi={selectedRabbiId}
               onSelect={selectRabbi}
@@ -45,15 +45,15 @@ const Header = ({ onMenuClick }) => {
           </div>
         </div>
 
-        {/* Center - ChavrusaAI Title */}
-        <div className="flex-1 flex justify-center">
+        {/* Center - ChavrusaAI Title (hidden on mobile) */}
+        <div className="hidden md:flex flex-1 justify-center">
           <h1 className="font-medium text-[#31110F] text-lg tracking-[-0.02em]">
             ChavrusaAI
           </h1>
         </div>
 
         {/* Right Section */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 md:gap-3 shrink-0">
           {/* Connection Status - Simplified */}
           <div className={`flex items-center gap-1.5 transition-all duration-300 ${
             connectionStatus === 'connected'

@@ -282,9 +282,14 @@ function App() {
           )
         ) : (
           // Authenticated users see Chat Interface with Landing Page styling
-          <div className="flex h-screen bg-gradient-to-br from-amber-50 to-orange-100 relative">
+          <div className="flex min-h-dvh bg-gradient-to-br from-amber-50 to-orange-100 relative">
             {/* Background overlay for glass effect */}
-            <div className="absolute inset-0 bg-white/20" />
+            <div className="absolute inset-0 bg-white/20" style={{
+              paddingTop: 'env(safe-area-inset-top)',
+              paddingBottom: 'env(safe-area-inset-bottom)',
+              paddingLeft: 'env(safe-area-inset-left)',
+              paddingRight: 'env(safe-area-inset-right)'
+            }} />
 
             {/* Sidebar */}
             <div className="hidden lg:block relative z-10">

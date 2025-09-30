@@ -13,10 +13,12 @@ const ChatInput = () => {
   const { sendMessage, selectedRabbiId, isTyping, isSelectingRabbi, abortCurrentMessage, currentAbortController } = useChatStore();
 
   useEffect(() => {
-    // Auto-resize textarea
+    // Auto-resize textarea (responsive max height)
     if (textareaRef.current) {
+      const isMobile = window.innerWidth < 768;
+      const maxHeight = isMobile ? 80 : 150;
       textareaRef.current.style.height = 'auto';
-      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, 150)}px`;
+      textareaRef.current.style.height = `${Math.min(textareaRef.current.scrollHeight, maxHeight)}px`;
     }
   }, [message]);
 
@@ -69,8 +71,8 @@ const ChatInput = () => {
   ];
 
   return (
-    <div className="px-6 py-4">
-      <div className="backdrop-blur-[30px] bg-white/40 rounded-2xl shadow-sm border border-white/30 p-4">
+    <div className="px-4 md:px-6 py-3 md:py-4">
+      <div className="backdrop-blur-[30px] bg-white/40 rounded-2xl shadow-sm border border-white/30 p-3 md:p-4">
         {/* Suggested Questions */}
         {!selectedRabbiId && (
           <div className="mb-4">

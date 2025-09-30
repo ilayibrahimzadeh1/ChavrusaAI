@@ -63,7 +63,7 @@ const ChatArea = () => {
 
   return (
     <div
-      className="flex-1 overflow-y-auto px-6 py-6 scrollbar-thin relative"
+      className="flex-1 overflow-y-auto px-4 md:px-6 py-4 md:py-6 scrollbar-thin relative"
       onScroll={handleScroll}
     >
       <motion.div
