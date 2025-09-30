@@ -282,7 +282,7 @@ function App() {
           )
         ) : (
           // Authenticated users see Chat Interface with Landing Page styling
-          <div className="flex min-h-dvh bg-gradient-to-br from-amber-50 to-orange-100 relative">
+          <div className="flex h-screen overflow-hidden bg-gradient-to-br from-amber-50 to-orange-100 relative">
             {/* Background overlay for glass effect */}
             <div className="absolute inset-0 bg-white/20" style={{
               paddingTop: 'env(safe-area-inset-top)',
@@ -311,15 +311,21 @@ function App() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col relative z-10">
+            <div className="flex-1 flex flex-col relative">
               {/* Header */}
-              <Header onMenuClick={() => setSidebarOpen(true)} />
+              <div className="relative z-30">
+                <Header onMenuClick={() => setSidebarOpen(true)} />
+              </div>
 
               {/* Chat Area */}
-              <ChatArea />
+              <div className="relative z-0">
+                <ChatArea />
+              </div>
 
               {/* Input Area */}
-              <ChatInput />
+              <div className="relative z-30">
+                <ChatInput />
+              </div>
             </div>
           </div>
         )}
