@@ -12,7 +12,9 @@
       "WebSearch",
       "Bash(lsof:*)",
       "Bash(xargs kill:*)",
-      "Read(//var/folders/f7/fdgnh4451kzfrdw60dnl92tc0000gn/T/TemporaryItems/NSIRD_screencaptureui_VuUyMx/**)"
+      "Read(//var/folders/f7/fdgnh4451kzfrdw60dnl92tc0000gn/T/TemporaryItems/NSIRD_screencaptureui_VuUyMx/**)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []
