@@ -70,7 +70,7 @@ const ChatArea = () => {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl mx-auto min-h-full flex flex-col"
+        className="max-w-4xl mx-auto flex flex-col"
       >
         <AnimatePresence mode="wait">
           {/* Enhanced Session Header */}
