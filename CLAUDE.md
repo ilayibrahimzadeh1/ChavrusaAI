@@ -1,5 +1,4 @@
 # CLAUDE.md
-DO NOT USE CONSOLE LOGS. LOGS DONT WORK LOGS DONT WORK FUCK CONSOLE LOGS
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
